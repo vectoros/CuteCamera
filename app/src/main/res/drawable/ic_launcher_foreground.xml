@@ -1,0 +1,31 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- 相机主体 -->
+    <path
+        android:fillColor="#FFCC00"
+        android:strokeWidth="2"
+        android:pathData="M20,30 h60 a10,10 0 0 1 10,10 v30 a10,10 0 0 1 -10,10 h-60 a10,10 0 0 1 -10,-10 v-30 a10,10 0 0 1 10,-10z" />
+
+    <!-- 镜头（用 path 画圆） -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 50,35 A 15,15 0 1,1 49.99,35 Z" />
+
+    <!-- 镜头内部笑脸 -->
+    <path android:fillColor="#000000" android:pathData="M 45,45 A 2,2 0 1,1 44.99,45 Z" />
+    <path android:fillColor="#000000" android:pathData="M 55,45 A 2,2 0 1,1 54.99,45 Z" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M45,55 Q50,60 55,55"
+        android:strokeWidth="2"
+        android:strokeLineCap="round" />
+
+    <!-- 相机顶部凸起部分 -->
+    <path
+        android:fillColor="#E6A800"
+        android:pathData="M35,20 h30 v10 h-30 z" />
+</vector>

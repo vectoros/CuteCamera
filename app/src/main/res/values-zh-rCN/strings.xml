@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CuteCamera</string>
+    <string name="camera_permission_denied">相机权限被拒绝，请手动开启</string>
+    <string name="camera_start_failed">相机启动失败</string>
+    <string name="picture_saved">照片保存到图库</string>
+    <string name="picture_save_failed">照片保存失败</string>
+    <string name="open_settings">打开相机设置</string>
+</resources>

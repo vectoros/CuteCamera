@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Configuration
+import android.media.AudioManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
@@ -30,6 +31,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.constraintlayout.widget.Guideline
 import androidx.core.content.ContextCompat
+import androidx.core.content.getSystemService
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.LifecycleOwner
@@ -175,7 +177,7 @@ class MainActivity : AppCompatActivity() {
             if (isGranted) {
                 startCamera()  // 用户允许，启动相机
             } else {
-                Toast.makeText(this, "相机权限被拒绝，请手动开启", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.camera_permission_denied, Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -227,7 +229,7 @@ class MainActivity : AppCompatActivity() {
                     this as LifecycleOwner, cameraSelector, preview, imageCapture
                 )
             } catch (exc: Exception) {
-                Toast.makeText(this, "相机启动失败", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.camera_start_failed, Toast.LENGTH_SHORT).show()
             }
         }, ContextCompat.getMainExecutor(this))
     }
@@ -254,13 +256,14 @@ class MainActivity : AppCompatActivity() {
         imageCapture.takePicture(outputOptions, ContextCompat.getMainExecutor(this), object :
             ImageCapture.OnImageSavedCallback {
             override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                Toast.makeText(applicationContext, "照片已保存到图库", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(applicationContext, R.string.picture_saved, Toast.LENGTH_SHORT).show()
+                playShutterSound()
             }
 
             override fun onError(exception: ImageCaptureException) {
                 Toast.makeText(
                     applicationContext,
-                    "保存失败: ${exception.message}",
+                    "${R.string.picture_save_failed} : ${exception.message}",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -275,12 +278,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openSettings() {
-        Toast.makeText(this, "打开设置界面", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, R.string.open_settings, Toast.LENGTH_SHORT).show()
     }
 
     private fun getOutputDirectory(): File {
         val mediaDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return mediaDir ?: filesDir
+    }
+
+    private fun playShutterSound(){
+        getSystemService<AudioManager>()?.playSoundEffect(AudioManager.FX_KEY_CLICK)
     }
 
     override fun onDestroy() {

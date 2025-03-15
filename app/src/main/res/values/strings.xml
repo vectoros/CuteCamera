@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CuteCamera</string>
+    <string name="camera_permission_denied">Camera permission denied, please enable it manually.</string>
+    <string name="camera_start_failed">Camera start failed</string>
+    <string name="picture_saved">Picture saved to Gallery</string>
+    <string name="picture_save_failed">Picture save failed</string>
+    <string name="open_settings">Open Settings</string>
 </resources>
